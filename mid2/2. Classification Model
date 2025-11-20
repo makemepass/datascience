@@ -1,0 +1,57 @@
+### 2. Classification Model (Credit Risk Assessment)
+
+### (a) Install and load relevant packages
+install.packages("class")
+install.packages("caret")
+
+library(class)
+library(caret)
+
+### (b) Create dataset (Categorical Attributes Only)
+
+df <- data.frame(
+  HomeOwnership = c("Own","Rent","Own","Own","Rent","Rent","Own","Own","Rent","Own"),
+  MaritalStatus = c("Single","Married","Single","Married","Single","Married","Married","Single","Married","Single"),
+  JobType = c("Blue-Collar","Admin","Admin","Blue-Collar","Blue-Collar","Admin","Admin","Blue-Collar","Admin","Admin"),
+  CreditRisk = c("Low Risk","High Risk","Low Risk","Low Risk","High Risk",
+                 "High Risk","Low Risk","Low Risk","High Risk","Low Risk")
+)
+
+print(df)
+
+### Convert categorical variables into numeric factors
+df_encoded <- df
+df_encoded$HomeOwnership <- as.numeric(factor(df$HomeOwnership))
+df_encoded$MaritalStatus <- as.numeric(factor(df$MaritalStatus))
+df_encoded$JobType <- as.numeric(factor(df$JobType))
+df_encoded$CreditRisk <- as.factor(df$CreditRisk)
+
+print(df_encoded)
+
+### Train-test split (first 7 for training, last 3 for testing)
+x_train <- df_encoded[1:7, 1:3]
+y_train <- df_encoded[1:7, 4]
+
+x_test <- df_encoded[8:10, 1:3]
+y_test <- df_encoded[8:10, 4]
+
+### Choose classifier → KNN
+pred <- knn(train = x_train, test = x_test, cl = y_train, k = 3)
+
+### Show predicted values
+print("Predicted Credit Risk:")
+print(pred)
+
+print("Actual Credit Risk:")
+print(y_test)
+
+### (c) Evaluate classifier performance
+pred <- factor(pred)
+cm <- confusionMatrix(pred, y_test)
+
+print("Confusion Matrix:")
+print(cm)
+
+### Print accuracy
+accuracy <- cm$overall["Accuracy"]
+accuracy

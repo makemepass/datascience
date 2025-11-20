@@ -1,0 +1,48 @@
+### 4. Correlation and Covariance
+
+### (a) Correlation Matrix
+data(iris)
+num_data <- iris[, 1:4]
+cor_matrix <- cor(num_data)
+cor_matrix
+
+### (b) Correlation Plot + Overview
+library(corrplot)
+corrplot(cor_matrix,
+         method = "color",
+         addCoef.col = "black",
+         tl.col = "black")
+
+summary(iris)
+
+
+### (c) ANOVA & ANCOVA on Iris
+anova_model <- aov(Petal.Length ~ Species, data = iris)
+summary(anova_model)
+
+ancova_model <- aov(Petal.Length ~ Sepal.Length + Species, data = iris)
+summary(ancova_model)
+
+
+
+### ----------------------------------------------
+### Fertilizer Problem (Dataset Kept in Wide Format)
+### ----------------------------------------------
+
+growth <- data.frame(
+  fert1 = c(6, 8, 4, 5, 3),
+  fert2 = c(8, 12, 9, 11, 6),
+  fert3 = c(13, 9, 11, 8, 7)
+)
+
+growth
+
+### Convert wide format → long format for ANOVA
+growth_long <- stack(growth)
+colnames(growth_long) <- c("Growth", "Fertilizer")
+
+growth_long$Fertilizer <- factor(growth_long$Fertilizer)
+
+### ANOVA
+fert_anova <- aov(Growth ~ Fertilizer, data = growth_long)
+summary(fert_anova)

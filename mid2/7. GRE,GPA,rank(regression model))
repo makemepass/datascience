@@ -1,0 +1,32 @@
+# 7. Logistic Regression on Admission Data
+
+# Import data from web
+url <- "http://stats.idre.ucla.edu/stat/data/binary.csv"
+admission_data <- read.csv(url)
+
+# View first rows
+head(admission_data)
+
+# Convert rank to a factor (categorical variable)
+admission_data$rank <- factor(admission_data$rank)
+
+# Build logistic regression model
+logit_model <- glm(admit ~ gre + gpa + rank,
+                   data = admission_data,
+                   family = binomial())
+
+# Summary of the model
+summary(logit_model)
+
+# Predict probabilities
+pred_prob <- predict(logit_model, type = "response")
+
+# Convert probability to class (0 or 1)
+pred_class <- ifelse(pred_prob > 0.5, 1, 0)
+
+# Confusion matrix
+table(Predicted = pred_class, Actual = admission_data$admit)
+
+# Calculate accuracy
+accuracy <- mean(pred_class == admission_data$admit)
+accuracy

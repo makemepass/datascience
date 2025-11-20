@@ -1,0 +1,34 @@
+### 5. Regression Model
+
+### (a) Apply regression model technique to predict house price
+### Import relevant dataset from the web
+
+url <- "https://raw.githubusercontent.com/selva86/datasets/master/BostonHousing.csv"
+house <- read.csv(url)
+
+head(house)
+
+### Simple Linear Regression: Predict house price using RM (average number of rooms)
+model_house <- lm(medv ~ rm, data = house)
+summary(model_house)
+
+### Predict house price for a house with 6 rooms
+predict(model_house, data.frame(rm = 6))
+
+
+
+### -----------------------------------------------
+### (b) Linear Regression on Student Study Data
+### -----------------------------------------------
+
+X <- c(1,2,3,4,5,6,7,8,9,10)
+Y <- c(55,60,65,75,80,85,90,92,95,98)
+
+student_data <- data.frame(Hours = X, Score = Y)
+
+### Fit Linear Regression Model
+model_study <- lm(Score ~ Hours, data = student_data)
+summary(model_study)
+
+### Predict exam score when Hours Studied = 6
+predict(model_study, data.frame(Hours = 6))

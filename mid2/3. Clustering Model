@@ -1,0 +1,30 @@
+### 3. Clustering Model
+
+### (a) Choose clustering algorithm → K-means
+
+# Create dataset for 6 products
+products <- data.frame(
+  ProductID = c("P1","P2","P3","P4","P5","P6"),
+  Price = c(10, 11, 3, 2, 12, 4),
+  ShippingCost = c(1, 2, 5, 4, 1, 6)
+)
+
+print(products)
+
+### Apply K-means clustering with K = 2
+set.seed(10)
+km <- kmeans(products[, 2:3], centers = 2)
+
+km$cluster      # cluster labels
+km$centers      # cluster centers
+
+### (b) Plot clusters using ggplot2
+library(ggplot2)
+
+products$Cluster <- as.factor(km$cluster)
+
+ggplot(products, aes(x = Price, y = ShippingCost, color = Cluster, label = ProductID)) +
+  geom_point(size = 4) +
+  geom_text(vjust = -1) +
+  ggtitle("Product Clusters (K = 2)") +
+  theme_minimal()

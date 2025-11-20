@@ -1,0 +1,36 @@
+### 6. Multiple Linear Regression Model
+### Apply multiple regression on dataset with continuous independent variables
+
+# Create given car dataset
+car_data <- data.frame(
+  Weight = c(3100,3500,2800,4000,2500,3200,3800,2900,3400,2600),
+  Horsepower = c(140,160,120,180,100,150,170,130,155,110),
+  EngineSize = c(3.5,4.0,2.5,4.5,2.0,3.6,4.2,3.0,3.8,2.2),
+  MPG = c(22,19,25,16,28,21,17,23,20,26)
+)
+
+car_data
+
+### Multiple Linear Regression Model
+model_car <- lm(MPG ~ Weight + Horsepower + EngineSize, data = car_data)
+summary(model_car)
+
+### Predict MPG for an example car
+# Example: Weight = 3200 lbs, HP = 150, Engine Size = 3.5 L
+new_car <- data.frame(Weight = 3200, Horsepower = 150, EngineSize = 3.5)
+predict(model_car, new_car)
+
+### Predict for all cars
+predicted_values <- predict(model_car, car_data)
+predicted_values
+
+### Plot Actual vs Predicted MPG
+plot(car_data$MPG, predicted_values,
+     col = "blue", pch = 16,
+     xlab = "Actual MPG", ylab = "Predicted MPG",
+     main = "Actual vs Predicted MPG")
+abline(a = 0, b = 1, col = "red", lwd = 2)
+
+### Calculate RMSE
+rmse <- sqrt(mean((car_data$MPG - predicted_values)^2))
+rmse
