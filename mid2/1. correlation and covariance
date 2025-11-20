@@ -1,0 +1,41 @@
+# 1. Load Iris Dataset
+data(iris)
+
+###############################
+# a) Find correlation matrix
+###############################
+num_data <- iris[, 1:4]      # numeric columns only
+cor_matrix <- cor(num_data)
+cor_matrix
+
+###############################
+# b) Plot correlation plot
+###############################
+library(corrplot)
+corrplot(cor_matrix,
+         method = "color",
+         addCoef.col = "black",
+         tl.col = "black")
+
+# Quick overview of iris
+summary(iris)
+
+###############################
+# c) ANOVA and ANCOVA on Iris
+###############################
+# ANOVA: categorical variable = Species
+anova_model <- aov(Petal.Length ~ Species, data = iris)
+summary(anova_model)
+
+# ANCOVA: Petal.Length explained by Sepal.Length + Species
+ancova_model <- aov(Petal.Length ~ Sepal.Length + Species, data = iris)
+summary(ancova_model)
+
+###############################
+# d) Correlation between X and Y
+############################### 
+X <- c(2, 4, 5, 6, 8)         # Hours studied
+Y <- c(60, 75, 80, 85, 95)    # Exam scores
+
+cor_xy <- cor(X, Y)
+cor_xy
