@@ -1,0 +1,59 @@
+#a
+age <- c(1,2,2,3,4,5)
+price <- c(29,25,21,18,15,15)
+df <- data.frame(age, price)
+df
+# Means
+mx <- mean(df$age)
+my <- mean(df$price)
+# Deviations
+dx <- df$age - mx
+dy <- df$price - my
+# Slope
+b1 <- sum(dx * dy) / sum(dx^2)
+# Intercept
+b0 <- my - b1 * mx
+b0
+b1
+age_input <- 3
+predicted_price <- b0 + b1 * age_input
+predicted_price
+plot(df$age, df$price,
+     col = "blue", pch = 16,
+     xlab = "Age",
+     ylab = "Price",
+     main = "Manual Linear Regression Line")
+# Add line using manual slope + intercept
+abline(a = b0, b = b1, col = "red", lwd = 2)
+
+#b
+# Sample dataset
+df <- data.frame(
+  id = 1:6,
+  age = c(21,23,19,25,20,22),
+  marks = c(80,75,90,85,70,95),
+  gender = c("M","F","F","M","F","M")
+)
+# Filter (same idea as subset in Program 2)
+subset(df, age > 21)
+subset(df, gender == "F")
+subset(df, marks >= 80)
+# Arrange (sort)
+df[order(df$age), ]
+df[order(-df$marks), ]
+# Select specific columns
+df[, c("age", "marks")]
+df[, 1:2]
+# Summaries (mean, min, max, etc.)
+mean(df$marks)
+sum(df$marks)
+max(df$age)
+min(df$age)
+# Group-wise summary (same concept as aggregate)
+aggregate(marks ~ gender, data = df, FUN = mean)
+
+#c
+data(iris)
+# ANCOVA model: Petal.Length explained by Sepal.Length + Species
+ancova_model <- aov(Petal.Length ~ Sepal.Length + Species, data = iris)
+summary(ancova_model)
