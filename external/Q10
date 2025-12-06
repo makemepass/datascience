@@ -1,0 +1,68 @@
+#a
+rain <- c(121.2, 152.6, 98.4, 171, 85.6)
+umb <- c(52, 72, 40, 100, 34)
+df <- data.frame(rain, umb)
+df
+# Means
+mx <- mean(df$rain)
+my <- mean(df$umb)
+# Deviations
+dx <- df$rain - mx
+dy <- df$umb - my
+# Slope
+b1 <- sum(dx * dy) / sum(dx^2)
+# Intercept
+b0 <- my - b1 * mx
+b0
+b1
+rain_input <- 134.3
+predicted_umbrellas <- b0 + b1 * rain_input
+predicted_umbrellas
+plot(df$rain, df$umb,
+     col = "blue", pch = 16,
+     xlab = "Rainfall (mm)",
+     ylab = "Umbrellas Sold",
+     main = "Manual Linear Regression Line")
+abline(a = b0, b = b1, col = "red", lwd = 2)
+
+#b
+# break example
+for(i in 1:10){
+  if(i == 5){
+    break      # stops the loop
+  }
+  print(i)
+}
+# continue (next) example
+for(i in 1:10){
+  if(i %% 2 == 0){
+    next       # skips even numbers
+  }
+  print(i)
+}
+
+#c
+# Different objects
+a <- 20
+b <- "hello"
+c <- TRUE
+d <- 5.6
+# Check types
+class(a)
+class(b)
+class(c)
+class(d)
+# Check if a variable is numeric, character, etc.
+is.numeric(a)
+is.character(b)
+is.logical(c)
+# Type conversion
+x <- "123"
+x_num <- as.numeric(x)
+x_num
+y <- 45
+y_char <- as.character(y)
+y_char
+z <- c(1,0,1)
+z_logical <- as.logical(z)
+z_logical
