@@ -1,0 +1,53 @@
+#a
+A <- c(200, 220, 250)
+B <- c(180, 190, 185)
+C <- c(240, 230, 260)
+all_values <- c(A, B, C)
+group <- c(rep("A",3), rep("B",3), rep("C",3))
+overall_mean <- mean(all_values)
+overall_mean
+mean_A <- mean(A)
+mean_B <- mean(B)
+mean_C <- mean(C)
+mean_A; mean_B; mean_C
+SSB <- 3*(mean_A - overall_mean)^2 +
+  3*(mean_B - overall_mean)^2 +
+  3*(mean_C - overall_mean)^2
+SSB
+SSW <- sum((A - mean_A)^2) +
+  sum((B - mean_B)^2) +
+  sum((C - mean_C)^2)
+SSW
+df_between <- 3 - 1
+df_within  <- 9 - 3
+MSB <- SSB / df_between
+MSW <- SSW / df_within
+F_value <- MSB / MSW
+F_value
+
+#b
+hist(iris$Sepal.Length,
+     col = "green",
+     main = "Histogram of Sepal Length",
+     xlab = "Sepal Length",
+     border = "black")
+species_count <- table(iris$Species)
+barplot(species_count,
+        col = c("red","yellow","blue"),
+        main = "Bar Chart of Species",
+        ylab = "Count")
+pie(species_count,
+    col = c("red","yellow","blue"),
+    main = "Pie Chart of Species Distribution")
+
+#c
+library(rvest)
+# URL to scrape
+link <- "https://en.wikipedia.org/wiki/List_of_countries_by_population"
+# Read HTML
+page <- read_html(link)
+# Extract tables
+all_tables <- page %>% html_table(fill = TRUE)
+# Print first table
+table1 <- all_tables[[1]]
+table1
