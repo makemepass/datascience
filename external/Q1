@@ -1,0 +1,52 @@
+#a
+# Vector examples (similar to Program 1)
+numbers <- c(10, 20, 30, 40)
+print(numbers)
+fruits <- c("apple", "banana", "mango")
+print(fruits)
+# List example (taken from Program 1 style)
+mylist <- list("apple", 25, TRUE, c(1, 2, 3))
+print(mylist)
+
+#b
+# Vectors
+v1 <- c(5, 10, 15)
+v2 <- c(2, 4, 6)
+# Summation
+v_add <- v1 + v2
+print(v_add)
+# Subtraction
+v_sub <- v1 - v2
+print(v_sub)
+# Multiplication
+v_mul <- v1 * v2
+print(v_mul)
+# Division
+v_div <- v1 / v2
+print(v_div)
+# List example (operation on list elements only)
+num_list <- list(a = 10, b = 20, c = 30)
+# Element-wise operations
+sum_list <- num_list$a + num_list$b
+print(sum_list)
+sub_list <- num_list$c - num_list$a
+print(sub_list)
+mul_list <- num_list$b * num_list$c
+print(mul_list)
+div_list <- num_list$c / num_list$b
+print(div_list)
+
+#c
+# Load iris dataset
+data(iris)
+# Select only numeric columns
+num_data <- iris[, 1:4]
+# Find correlation matrix
+cor_matrix <- cor(num_data)
+# Plot correlation matrix
+library(corrplot)
+corrplot(cor_matrix,
+         method = "color",
+         addCoef.col = "black",
+         tl.col = "black",
+         number.cex = 0.7)
