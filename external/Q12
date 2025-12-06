@@ -1,0 +1,62 @@
+#a
+# Load cars dataset
+data(cars)
+cars
+# Boxplot of speed
+boxplot(cars$speed,
+        col = "orange",
+        main = "Boxplot of Speed",
+        ylab = "Speed")
+# Scatter plot (speed vs distance)
+plot(cars$speed, cars$dist,
+     col = "blue", pch = 16,
+     main = "Scatter Plot: Speed vs Distance",
+     xlab = "Speed",
+     ylab = "Distance")
+# Histogram of distance
+hist(cars$dist,
+     col = "green",
+     main = "Histogram of Distance",
+     xlab = "Distance",
+     border = "red")
+
+#b
+# Create a list
+mylist <- list(
+  name = "R Programming",
+  numbers = c(10, 20, 30),
+  flag = TRUE
+)
+# Print the list
+print(mylist)
+# Access elements
+mylist$name
+mylist$numbers
+mylist$flag
+# Update element
+mylist$name <- "Data Science"
+# Add new element
+mylist$new_value <- 99
+# Remove element
+mylist$flag <- NULL
+# Length of list
+length(mylist)
+# Combine two lists
+list2 <- list(a = 100, b = 200)
+combined <- c(mylist, list2)
+combined
+
+#c
+# Install library (run once)
+# install.packages("e1071")
+library(e1071)
+# Load iris dataset
+data(iris)
+# Build Naive Bayes model
+model_nb <- naiveBayes(Species ~ ., data = iris)
+# View model
+model_nb
+# Predict using the model
+pred <- predict(model_nb, iris[,1:4])
+# Compare actual vs predicted
+table(Predicted = pred, Actual = iris$Species)
