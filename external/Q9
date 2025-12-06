@@ -1,0 +1,61 @@
+#a
+# Load mtcars dataset
+data(mtcars)
+boxplot(mtcars$mpg,
+        main = "Boxplot of MPG",
+        col = "orange",
+        ylab = "MPG")
+# Identify outliers
+out_mpg <- boxplot(mtcars$mpg)$out
+out_mpg   # print the outliers
+boxplot(mtcars$hp,
+        main = "Boxplot of HP",
+        col = "green",
+        ylab = "Horsepower")
+out_hp <- boxplot(mtcars$hp)$out
+out_h
+plot(mtcars$mpg, mtcars$hp,
+     col = "blue", pch = 16,
+     xlab = "MPG", ylab = "HP",
+     main = "Scatter Plot MPG vs HP")
+# Highlight outliers in scatter (in red)
+points(
+  mtcars$mpg[mtcars$mpg %in% out_mpg],
+  mtcars$hp[mtcars$mpg %in% out_mpg],
+  col = "red", pch = 19, cex = 1.4
+)
+
+#b
+# Import from web
+url <- "http://stats.idre.ucla.edu/stat/data/binary.csv"
+mydata <- read.csv(url)
+mydata
+head(mydata)
+str(mydata)
+# Convert rank to factor (as in Program 6)
+mydata$rank <- factor(mydata$rank)
+# Logistic regression model
+model <- glm(admit ~ gre + gpa + rank,
+             data = mydata,
+             family = binomial())
+summary(model)
+
+#c
+# Basic string
+s <- "Data Science Lab"
+# nchar() - number of characters
+nchar(s)
+# substr() - extract part of string
+substr(s, 1, 4)
+# paste() - combining strings
+paste("Hello", "World")
+# toupper() and tolower()
+toupper(s)
+tolower(s)
+# strsplit() - split a string
+strsplit(s, " ")
+# grep() - find matching pattern
+grep("Science", s)
+# sub() and gsub() - replace text
+sub("Science", "Analytics", s)
+gsub("a", "A", s)
