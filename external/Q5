@@ -1,0 +1,37 @@
+#a
+# Creating R objects for calculator inputs
+a <- 20
+b <- 5
+# Basic calculator operations
+add_result <- a + b
+sub_result <- a - b
+mul_result <- a * b
+div_result <- a / b
+# Display results
+print(add_result)
+print(sub_result)
+print(mul_result)
+print(div_result)
+
+#b
+data_csv <- read.csv("C:/Users/YourName/Desktop/sample.csv")
+print(data_csv)
+write.csv(data_csv, "C:/Users/YourName/Desktop/output.csv",
+          row.names = FALSE)
+data_txt <- read.table("C:/Users/YourName/Desktop/sample.txt")
+print(data_txt)
+write.table(data_txt, "C:/Users/YourName/Desktop/output.txt",
+            row.names = FALSE)
+
+#c
+# Load dataset
+data(mtcars)
+# Use only numeric columns
+mt <- mtcars
+# Apply k-means with 3 clusters
+set.seed(101)
+km <- kmeans(mt, centers = 3)
+# Show cluster centers
+km$centers
+# Optional: Display cluster assignments
+km$cluster
