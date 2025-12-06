@@ -1,0 +1,54 @@
+#a
+# Function to print Fibonacci series
+fib <- function(n) {
+  a <- 0
+  b <- 1
+  print(a)
+  print(b)
+  for(i in 3:n){
+    c <- a + b
+    print(c)
+    a <- b
+    b <- c
+  }
+}
+# Call the function
+fib(10)    # prints first 10 Fibonacci numbers
+
+#b
+# Sample dataframe
+df <- data.frame(
+  id = 1:6,
+  age = c(21, 23, 19, 25, 20, 22),
+  marks = c(80, 75, 90, 85, 70, 95),
+  gender = c("M","F","F","M","F","M")
+)
+# Subsetting
+subset(df, age > 21)
+subset(df, gender == "F")
+subset(df, marks >= 80 & gender == "M")
+# Aggregation (same style as summary, mean, etc. from your programs)
+mean(df$marks)
+sum(df$marks)
+min(df$marks)
+max(df$marks)
+# Aggregate by gender
+aggregate(marks ~ gender, data = df, FUN = mean)
+aggregate(age ~ gender, data = df, FUN = max)
+
+#c
+internal <- c(15,23,18,23,24,22,22,19,19,16,24,11,24,16,23)
+external <- c(49,63,58,60,58,61,60,63,60,52,62,30,59,49,68)
+df <- data.frame(internal, external)
+df
+model <- lm(external ~ internal, data = df)
+summary(model)
+model$coefficients      # slope and intercept
+model$residuals         # residual values
+plot(df$internal, df$external,
+     col = "blue", pch = 16,
+     xlab = "Internal Marks",
+     ylab = "External Marks",
+     main = "Linear Regression Plot")
+
+abline(model, col = "red", lwd = 2)
