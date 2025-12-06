@@ -1,0 +1,58 @@
+#a
+library(class)
+df <- data.frame(
+  Age = c(32,40,16,34,34,40,20,15,55,15),
+  Gender = c(0,0,1,1,0,0,1,0,1,0),
+  Sport = c("Football","Neither","Cricket","Cricket","Neither",
+            "Cricket","Neither","Cricket","Football","Football")
+)
+df
+df$Sport <- factor(df$Sport)
+x_train <- df[1:8, 1:2]
+y_train <- df[1:8, 3]
+x_test <- df[9:10, 1:2]
+y_test <- df[9:10, 3]
+pred <- knn(train = x_train, test = x_test, cl = y_train, k = 3)
+pred
+accuracy <- mean(pred == y_test)
+accuracy
+new_person <- data.frame(Age = 25, Gender = 0)
+predicted_sport <- knn(train = x_train, test = new_person, cl = y_train, k = 3)
+predicted_sport
+
+#b
+library(dplyr)
+library(tidyr)
+# Sample dataset
+df <- data.frame(
+  name = c("A","B","C","D","A"),
+  marks1 = c(80,70,90,85,80),
+  marks2 = c(75,65,88,82,75)
+)
+# mutate() – create new column
+df2 <- df %>% mutate(total = marks1 + marks2)
+df2
+# pivot_longer() – convert wide to long
+long_df <- df2 %>% pivot_longer(cols = c(marks1, marks2), 
+                                names_to = "type", values_to = "value")
+long_df
+# pivot_wider() – long to wide
+wide_df <- long_df %>% pivot_wider(names_from = type, values_from = value)
+wide_df
+# Remove missing values
+df_no_na <- na.omit(df2)
+df_no_na
+# Remove duplicates
+df_unique <- df2 %>% distinct()
+df_unique
+
+
+#c
+x <- c(10, 20, 30, 40)
+y <- c(5, 15, 25, 35)
+# Correlation
+cor_xy <- cor(x, y)
+cor_xy
+# Covariance
+cov_xy <- cov(x, y)
+cov_xy
