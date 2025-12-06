@@ -1,0 +1,56 @@
+#a
+# Given data
+internal <- c(15,23,18,23,24,22,22,19,19,16,24,11,24,16,23)
+external <- c(49,63,58,60,58,61,60,63,60,52,62,30,59,49,68)
+# Create dataframe
+df <- data.frame(internal, external)
+df
+# Build linear regression model
+model <- lm(external ~ internal, data = df)
+# Show regression coefficients
+model$coefficients
+# Show residuals
+model$residuals
+# Plot the regression model
+plot(df$internal, df$external,
+     col = "blue", pch = 16,
+     xlab = "Internal Marks",
+     ylab = "External Marks",
+     main = "Linear Regression Plot")
+abline(model, col = "red", lwd = 2)
+
+#b
+# Given data
+x <- c(10,30,70)
+y <- c(25,65,85)
+# Step 1: Means
+mean_x <- mean(x)
+mean_y <- mean(y)
+# Step 2: Deviations
+dx <- x - mean_x
+dy <- y - mean_y
+# Step 3: Numerator
+num <- sum(dx * dy)
+# Step 4: Denominator
+den <- sqrt(sum(dx^2) * sum(dy^2))
+# Step 5: Correlation
+cor_xy <- num / den
+cor_xy
+plot(x, y,
+     col = "blue", pch = 16,
+     xlab = "X Values",
+     ylab = "Y Values",
+     main = "Correlation Plot")
+
+# Add regression line
+abline(lm(y ~ x), col = "red", lwd = 2)
+
+#c
+library(XML)
+library(methods)
+# Read XML file
+xml_data <- xmlParse(file = "C:/Users/YourName/Desktop/sample.xml")
+print(xml_data)
+# Convert XML to dataframe
+df_xml <- xmlToDataFrame("C:/Users/YourName/Desktop/sample.xml")
+df_xml
