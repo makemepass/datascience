@@ -1,0 +1,32 @@
+#a
+# Creating a simple dataframe (same style as Program 1 & Program 2)
+df <- data.frame(
+  id = c(1, 2, 3),
+  name = c("A", "B", "C"),
+  age = c(20, 21, 19)
+)
+print(df)
+
+#b
+# Structure of dataframe (similar to summary usage from Program 2 & 4)
+str(df)
+# Descriptive statistics
+summary(df)
+# Add a new row (using rbind as in Program 1)
+df2 <- rbind(df, c(4, "D", 22))
+df2
+# Add a new column (using cbind like Program 1)
+df3 <- cbind(df2, marks = c(90, 85, 88, 92))
+df3
+
+#c
+data(iris)
+# Use only numeric columns for K-means
+iris_data <- iris[, 1:4]
+# Build k-means model with 3 clusters
+set.seed(101)
+km <- kmeans(iris_data, centers = 3)
+# Print cluster centers
+km$centers
+# Optional: check how clusters match species
+table(km$cluster, iris$Species)
