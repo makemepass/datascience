@@ -1,0 +1,43 @@
+#a
+# Create dataset
+df <- data.frame(
+  millage = c(18,25,50,68,75,65),
+  age = c(1,2,2,3,4,5),
+  price = c(29,25,21,18,15,15)
+)
+df
+# Build Multiple Linear Regression Model
+model <- lm(price ~ millage + age, data = df)
+# Model Summary (Regression coefficients)
+summary(model)
+# Predict price for a new car
+test_car <- data.frame(millage = 40, age = 3)
+predicted_price <- predict(model, test_car)
+predicted_price
+
+#b
+# Reading CSV file
+csv_data <- read.csv("C:/Users/YourName/Desktop/sample.csv")
+print(csv_data)
+# Writing CSV file
+write.csv(csv_data, "C:/Users/YourName/Desktop/output.csv",
+          row.names = FALSE)
+# Reading TXT file
+txt_data <- read.table("C:/Users/YourName/Desktop/sample.txt")
+print(txt_data)
+# Writing TXT file
+write.table(txt_data, "C:/Users/YourName/Desktop/output.txt",
+            row.names = FALSE)
+
+
+#c
+day_num <- 4   # Example input
+day <- switch(day_num,
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday")
+print(day)
