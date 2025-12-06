@@ -1,0 +1,66 @@
+#a
+salary <- c(30,32,110,65,55,50,55,48,43,42,
+            45,45,33,34,38,38,34,38,33,32)
+minimum <- min(salary)
+q1 <- quantile(salary, 0.25)
+median_sal <- median(salary)
+q3 <- quantile(salary, 0.75)
+maximum <- max(salary)
+minimum
+q1
+median_sal
+q3
+maximum
+range_val <- max(salary) - min(salary)
+range_val
+IQR_val <- q3 - q1
+IQR_val
+SIQR <- IQR_val / 2
+SIQR
+lower_fence <- q1 - 1.5 * IQR_val
+upper_fence <- q3 + 1.5 * IQR_val
+outliers <- salary[salary < lower_fence | salary > upper_fence]
+outliers
+boxplot(salary,
+        main = "Boxplot of Employee Salaries",
+        col = "orange",
+        ylab = "Salary")
+
+
+#b
+library(readxl)
+excel_data <- read_excel("C:/Users/YourName/Desktop/sample.xlsx")
+excel_data
+library(XML)
+library(methods)
+xml_data <- xmlParse(file = "C:/Users/YourName/Desktop/sample.xml")
+print(xml_data)
+xml_df <- xmlToDataFrame("C:/Users/YourName/Desktop/sample.xml")
+xml_df
+
+#c
+# Create a list
+mylist <- list(
+  name = "Employee Data",
+  numbers = c(10, 20, 30),
+  flag = TRUE,
+  dept = "HR"
+)
+# Print
+print(mylist)
+# Access elements
+mylist$name
+mylist$numbers
+mylist$dept
+# Modify element
+mylist$dept <- "Finance"
+# Add new element
+mylist$bonus <- 5000
+# Remove element
+mylist$flag <- NULL
+# Length of list
+length(mylist)
+# Merging two lists
+list2 <- list(x = 100, y = 200)
+combined_list <- c(mylist, list2)
+combined_list
